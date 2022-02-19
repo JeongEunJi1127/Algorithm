@@ -3,17 +3,19 @@ def solution(new_id):
     character = '~!@#$%^&*()=+[{]}:?,<>/'
 
     # [1] .lower() : 대문자를 소문자로 바꾸어 주는 메소드
+    new_id = new_id.lower()
     # [2] string.join() 메소드는 괄호 안의 요소를 string과 결합하여 새 문자열을 반환해줌
-    new_id = "".join(x for x in new_id.lower() if x not in character)
+    new_id = "".join(x for x in new_id if x not in character)
 
     # [3] 마침표(.)가 2번 이상 연속된 부분을 하나의 마침표(.)로 치환
     for el in range(len(new_id)):
         if el == 0:
             answer += new_id[el]
         elif (new_id[el] == new_id[el-1]) and (new_id[el] == "."):
-            answer
+            continue
         else:
             answer += new_id[el]
+
 
     # [4] index 메서드를 통해 마침표 위치 알아내서 제거
     # strip 메소드를 몰랐을 때의 내 답 => 여기서 런타임 에러 발생
@@ -21,6 +23,11 @@ def solution(new_id):
     #     answer = answer[1:]
     # if (answer != "") and (answer[::-1].index(".") == 0) :
     #     answer = answer[:len(answer)-1]
+
+    # if answer[0] == ".":
+    #     answer = answer[1:]
+    # elif answer[-1] == ".":
+    #     answer = answer[:-1]
 
     # strip 메소드 사용하면!
     answer = answer.strip(".")
