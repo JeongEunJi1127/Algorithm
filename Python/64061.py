@@ -13,8 +13,8 @@ def solution(board, moves):
                 sol.append(board[i][move-1])
                 board[i][move-1] = 0
                 pprint(board)
-                print(sol)
-                print(answer)
+                # print(sol)
+                # print(answer)
 
                 if len(sol) >= 2:
                     if sol[-1] == sol[-2]:
@@ -24,29 +24,9 @@ def solution(board, moves):
 
                 break
 
-            # print(board[move])
-
     return answer
 
 # stack, deque 사용해보기!
 print(solution(([0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]),[1,5,3,5,1,2,1,4]) )
 
 
-# from pprint import pprint
-#
-# def solution(board, moves):
-#     answer = 0
-#     sol = []
-#
-#     pprint(board)
-#     print( )
-#
-#     for move in moves:
-#         for i in range(len(board)):
-#             for j in range(len(board[i])):
-#                 sol.append(board[j][move - 1])
-#                 print(sol)
-#             sol = []
-#
-#     return answer
-#
