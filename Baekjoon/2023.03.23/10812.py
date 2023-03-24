@@ -3,7 +3,6 @@ b = []
 
 for i in range(n):
     b.append(i+1)
-print(b)
 
 for _ in range(m):
     i,j,k = map(int,input().split())
