@@ -6,4 +6,4 @@ while(n!=0):
     ans += num[n%b]
     n //= b
     
-print(ans)
+print(ans[::-1])
