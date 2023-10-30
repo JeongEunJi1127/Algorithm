@@ -11,3 +11,4 @@ while len(deq) != 1:
 
 for i in deq:
     print(i)
+    
