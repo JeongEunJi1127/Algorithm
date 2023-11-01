@@ -9,12 +9,9 @@ for _ in range(t):
 
     while lst:
         if lst[0] < max(lst):
-            print(lst,ans)
             lst.append(lst.popleft())
             ans.append(ans.popleft())
-            print(lst,ans)
         else:
-            print("sd",lst,ans,i)
             i+=1
             if ans[0] == m:
                 print(i)
