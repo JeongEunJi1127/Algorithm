@@ -5,6 +5,7 @@ for _ in range(n):
     prices.append(int(sys.stdin.readline()))
 prices.reverse()
 ans = 0
+
 for price in prices:
     if k == 0:
         break
