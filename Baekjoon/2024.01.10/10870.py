@@ -2,6 +2,8 @@ import sys
 n = int(sys.stdin.readline())
 
 def fibonacci(num):
+    if num == 1:
+        return 1
     x0 = 0
     x1 = 1
     fibo = 0
