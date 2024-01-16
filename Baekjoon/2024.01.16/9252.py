@@ -15,5 +15,6 @@ for i in range(1,len(a)):
                 lcs[i][j] = lcs[i-1][j]
             else:
                 lcs[i][j] = lcs[i][j-1]
-print(len(lcs[-1][-1]))
-print(lcs[-1][-1])
+
+result=lcs[-1][-1]
+print(len(result),result,sep="\n")
