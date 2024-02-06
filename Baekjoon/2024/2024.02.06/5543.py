@@ -1,0 +1,6 @@
+high = int(input())
+mid = int(input())
+upper = int(input())
+cola = int(input())
+cider = int(input())
+print(min(high,mid,upper) + min(cider,cola) - 50)
