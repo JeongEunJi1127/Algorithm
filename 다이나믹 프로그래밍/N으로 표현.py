@@ -1,3 +1,4 @@
+# lv3
 def solution(n, number):
     dp = [[] for _ in range(9)]
     #  n의 최솟값이 8보다 크면 리턴하므로 n을 1~9 개 이용하여 나타낼수 있는 수 구하기

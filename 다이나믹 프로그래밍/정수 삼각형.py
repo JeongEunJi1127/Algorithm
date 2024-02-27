@@ -1,3 +1,4 @@
+# lv3
 def solution(triangle):
     for i in range(1,len(triangle)):
         for j in range(i+1):
