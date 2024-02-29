@@ -8,7 +8,7 @@ while p < (m - 1):
     if s[p:p + 3] == 'IOI': #3칸
         cnt += 1
         p += 2
-        if cnt == N:
+        if cnt == n:
             ans += 1
             cnt -= 1
     else:
