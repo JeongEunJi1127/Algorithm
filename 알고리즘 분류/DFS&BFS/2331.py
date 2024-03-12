@@ -1,3 +1,4 @@
+# dfs를 쓰지 않고 구현으로 풀었다.
 def get(n):
     num = 0
     for i in str(n):
