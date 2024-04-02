@@ -1,5 +1,5 @@
 from collections import deque
-import pprint
+
 def rotate45(array):
     # X의 주 대각선을 ((1,1), (2,2), …, (n, n)) 가운데 열 ((n+1)/2 번째 열)로 옮긴다.
     value = deque()
