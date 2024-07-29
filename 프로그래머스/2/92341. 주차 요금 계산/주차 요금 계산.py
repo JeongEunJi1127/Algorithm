@@ -1,56 +1,46 @@
-import math
+def StrToTime(str):
+    return int(str[:2])*60 + int(str[3:])  
 
-def timeToNum(string):
-    return int(string[:2]) * 60 + int(string[3:])
-     
 def solution(fees, records):
     answer = []
-    times = {}
     basicTime, basicFee, unitTime, unitFee = fees
-    
-    cars = {}
-    
+    parkingRecords = {}
+    timeRecords = {}
+
     for record in records:
-        time, num, inout = record.split()
+        time, carNum, inOut = record.split()
         
-        # 딕셔너리에 현재 차번호가 존재하면
-        if num in cars.keys():
-            # 주차장에 이미 있는 차량이 다시 입차되는 경우는 없으므로 이 경우 inout은 무조건 OUT
-            inTime = timeToNum(cars[num][0])
-            outTime = timeToNum(time)
-            
-            cars.pop(num)
-            
-            if num in times.keys():
-                times[num] += outTime-inTime
+        # 입차면 입차 시간 기록
+        if(inOut == "IN"):
+            parkingRecords[carNum] = StrToTime(time)
+        # 출차면 총 주차 시간 계산
+        else:
+            parkingTime = StrToTime(time) - parkingRecords[carNum]
+            if carNum in timeRecords.keys():
+                timeRecords[carNum] += parkingTime
             else:
-                times[num] = outTime-inTime
-        # 딕셔너리에 현재 차번호가 존재하지 않으면-> 주차장에 없는 차량이 출차되는 경우는 없으므로 이 경우 inout은 무조건 IN
-        else:
-            # cars[key] = [들어온시간]
-            cars[num] = [time]
-
-    # cars 안에 아직 값이 남아있다면 입차된 후에 출차된 내역이 없어 23:59에 출차된 것
-    for key in cars.keys():
-        inTime = timeToNum(cars[key][0])
-        outTime = timeToNum("23:59")
-        
-        if key in times.keys():
-            times[key] += outTime-inTime
-        else:
-            times[key] = outTime-inTime
-     
-    times = dict(sorted(times.items()))
-
-    for i in times.items():
-        num, time = i
-        
-        totalTime = int(time)
-        fee = int(basicFee)
-        
-        if totalTime > int(basicTime):
-            fee += math.ceil((totalTime - int(basicTime))/unitTime) * int(unitFee)
-            
-        answer.append(fee)
+                timeRecords[carNum] = parkingTime
+            parkingRecords.pop(carNum)
     
+    # 출차하지 못한 차량 있다면
+    if len(parkingRecords.keys()) !=0:
+        for i in parkingRecords.keys():    
+            parkingTime = StrToTime("23:59") - parkingRecords[i]
+            if i in timeRecords.keys():
+                timeRecords[i] += parkingTime
+            else:
+                timeRecords[i] = parkingTime
+            
+    timeRecords = dict(sorted(timeRecords.items()))
+    print(timeRecords)
+    
+    for timeRecord in timeRecords.keys():
+        t = int(timeRecords[timeRecord])
+        if t <= basicTime:
+            answer.append(basicFee)
+        else:
+            if (t - basicTime)%unitTime != 0:
+                answer.append(basicFee + (int((t - basicTime)/unitTime)+1) * unitFee)
+            else:
+                answer.append(basicFee + int((t - basicTime)/unitTime) * unitFee)
     return answer
