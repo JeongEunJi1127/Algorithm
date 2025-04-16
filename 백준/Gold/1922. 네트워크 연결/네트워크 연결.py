@@ -1,38 +1,42 @@
+# 15:00 ~ 
+
+# 최소신장트리
+
 import sys
 input = sys.stdin.readline
 
 n = int(input())
 m = int(input())
+parent = [i for i in range(n+1)]
+costs = []
 
-graph = []
-parent = list(range(n+1))
-for _ in range(m):
-    a,b,c = map(int,input().split())
-    if a!=b:
-        graph.append((c,a,b))
-
-graph.sort()
-
-def find(x):
-    if parent[x] != x:
-        return find(parent[x])
-    return parent[x]
+def find(a):
+    if parent[a] != a:
+        parent[a] = find(parent[a])
+    return parent[a]
 
 def union(a,b):
     a = find(a)
     b = find(b)
-    if a < b:
+
+    if a != b:
         parent[b] = a
-    else:
-        parent[a] = b
+        return True
+    return False
 
 def solution():
+    for _ in range(m):
+        a,b,c = map(int,input().split())
+        costs.append((c,a,b))
+
+    costs.sort()
+
     answer = 0
-    for c,a,b in graph:
-        if find(a) != find(b):
-            union(a,b)
+    for c,a,b in costs:
+        if union(a,b):
             answer += c
-    return answer
 
+    print(answer)
+        
 
-print(solution())
+solution()
