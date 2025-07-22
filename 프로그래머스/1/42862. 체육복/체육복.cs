@@ -1,4 +1,4 @@
-// 14:36 ~ 
+// 14:36 ~ 15:06
 
 using System;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ public class Solution {
                     answer ++;
                 }  
                 
-                Console.WriteLine(i);
+                //Console.WriteLine(i);
             }
             else
                 answer ++;
